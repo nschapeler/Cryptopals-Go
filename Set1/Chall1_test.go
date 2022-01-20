@@ -33,3 +33,12 @@ func TestOneByteTooMuch(t *testing.T) {
 		t.Fatalf(`Got %q, expected %#q`, res, want)
 	}
 }
+
+func TestHexConversion(t *testing.T) {
+	want := "49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f"
+	res := byteArrayToHex(hexToByteArray(want))
+	if !(want == res) {
+		t.Fatalf(`Got %q, expected %#q`, res, want)
+	}
+
+}

@@ -8,6 +8,7 @@ func hexToByteArray(hexString string) []byte {
 	bytes := make([]byte, len(hexString)/2)
 
 	hexCharToByte := map[byte]byte{
+		'0': 0,
 		'1': 1,
 		'2': 2,
 		'3': 3,
@@ -97,6 +98,40 @@ func byteArrayToBase64(byteArray []byte) string {
 
 	return string(res) + string(ending)
 
+}
+
+func byteArrayToHex(byteArray []byte) string {
+	ByteToHexChar := map[byte]byte{
+		0:  '0',
+		1:  '1',
+		2:  '2',
+		3:  '3',
+		4:  '4',
+		5:  '5',
+		6:  '6',
+		7:  '7',
+		8:  '8',
+		9:  '9',
+		10: 'a',
+		11: 'b',
+		12: 'c',
+		13: 'd',
+		14: 'e',
+		15: 'f',
+	}
+
+	// 1 byte = 2 hex symbols
+	res := make([]byte, len(byteArray)*2)
+
+	for i := 0; i < len(byteArray); i++ {
+
+		toConvert := byteArray[i]
+		res[2*i+1] = ByteToHexChar[toConvert%16]
+		toConvert /= 16
+		res[2*i] = ByteToHexChar[toConvert%16]
+	}
+
+	return string(res)
 }
 
 func byteToBase64Symbol(b byte) byte {
