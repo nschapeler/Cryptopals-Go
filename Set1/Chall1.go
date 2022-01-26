@@ -97,7 +97,6 @@ func byteArrayToBase64(byteArray []byte) string {
 	}
 
 	return string(res) + string(ending)
-
 }
 
 func byteArrayToHex(byteArray []byte) string {
